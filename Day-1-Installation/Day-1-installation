@@ -39,6 +39,8 @@ eksctl delete cluster naresh --region ap-south-1
 
 ========= to get the created nodes by eks cluster ========== 
    kubectl get nodes
+or 
+kubectl get pods -o wide 
 
 
 

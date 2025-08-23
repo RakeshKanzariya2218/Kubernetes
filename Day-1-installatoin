@@ -22,3 +22,44 @@ tar -xzf eksctl_${PLATFORM}.tar.gz -C /tmp && rm eksctl_${PLATFORM}.tar.gz
 sudo install -m 0755 /tmp/eksctl /usr/local/bin && rm /tmp/eksctl
 
 eksctl version
+
+========= Attach IAM to an ec2 ==========
+- eks full access 
+- cloud formation full access
+- or give adminstration access
+
+========  create the cluster ==========
+ ```sh
+   eksctl create cluster --name cluster-name  \
+   --region region-name \
+   --node-type instance-type \
+   --nodes-min 2 \
+   --nodes-max 2 \ 
+   --zones <AZ-1>,<AZ-2>
+For ex :
+
+  eksctl create cluster --name rakesh \
+      --region us-east-1 \
+   --node-type t2.small \
+
+======= delete the cluster =======
+
+eksctl delete cluster naresh --region ap-south-1
+
+========= to get the created nodes by eks cluster ========== 
+   kubectl get nodes
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

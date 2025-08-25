@@ -1,15 +1,19 @@
 apiVersion: apps/v1
 kind: ReplicaSet
+
+#### replicaset metadata ##########
 metadata:
-  name: web-rs
+  name: web-rs        # name of replicaset
 spec:
   replicas: 3 # 3 Pods should exist at all times.
   selector:  # Pods label should be defined in ReplicaSet label selector
-    matchLabels:
+    matchLabels:            # Defines which Pods this ReplicaSet should manage.
       app: webapp
+  
+  ########### pod metadata ############
   template:
     metadata:
-      name: myapp-pod
+      name: myapp-pod            # name of pod which is created by replicaset
       labels:
         app: webapp
         type: front-end # Atleast 1 Pod label should match with ReplicaSet Label Selector

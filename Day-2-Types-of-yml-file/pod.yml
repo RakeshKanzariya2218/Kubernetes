@@ -1,11 +1,13 @@
-apiVersion: v1
-kind: Pod
-metadata:
-  name: myapp
-  labels:
+apiVersion: v1          # Which version of the K8s API this object uses
+kind: Pod               # What you’re creating: a single Pod (lowest-level unit)
+
+metadata:               # Descriptive info about the object
+  name: myapp           # Pod’s name (must be unique in the namespace)
+  labels:               # Key–value tags you can use to group/select this Pod
       app: webapp
       type: front-end
-spec:
-  containers:
-  - name: nginx-container 
-    image: nginx
+
+spec:                   # The desired state (what you want Kubernetes to run)
+  containers:           # List (array) of containers inside this one Pod
+  - name: nginx-container   # Container’s name (for logs/exec commands)
+    image: nginx            # Container image to run → nginx:latest from Docker Hub

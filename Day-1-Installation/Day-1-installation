@@ -38,9 +38,11 @@ For ex :
 eksctl delete cluster naresh --region ap-south-1
 
 ========= to get the created nodes by eks cluster ========== 
-   kubectl get nodes
+   kubectl get nodes    #  it shows only default namespace pods 
 or 
 kubectl get pods -o wide 
+or 
+kubectl get pods -A     # it shows all namespace pods which are running (ALL)
 
 
 

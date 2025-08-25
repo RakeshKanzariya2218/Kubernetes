@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: Deployment              # only change in kind remaining all are as it replicaset .
 metadata:
   name: nginx-deployment
   labels:

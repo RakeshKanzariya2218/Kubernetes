@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-nodeport-deployment           # name of deployment 
+spec:                                          
+  replicas: 3                            # 3 pods will create 
+  selector:
+    matchLabels:
+      app: myapp                         # label should match with pod label 
+  template:
+    metadata:
+      labels:
+        app: myapp                      # label should match with deployment label 
+        type: frontend
+    spec:
+      containers:
+        - name: nginx-container
+          image: nginx
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service
+spec:
+  type: NodePort                 # nodeport type serrvice which used for  external communication like user hit the nodeip:nodeport 
+  selector:
+    app: myapp                    # label should match with pod label so service control this  label pod and resirecting request to that pod 
+  ports:
+    - targetPort: 80               # port of pod (nginx )
+      port: 80                     # serrvise port ( service port and pod port both are same is recommonded way to configure for better understanding )
+      nodePort: 30008              # node port which is allocated to all node inside the cluster ( a comman port is allocated to all nodes so using samme sg ) 
+
+
+
+      #######  service is work at cluster level so  any node have not running pod and end user hit that node ip but inside that node no any pod are running so request go to iptable ( kubeproxy ) by
+      #        service concept , so any node ip will hit service work as load balancer but in real time node are private and not give any external access as node ip 
+ 

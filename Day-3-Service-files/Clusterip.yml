@@ -17,7 +17,9 @@ spec:
     spec:
       containers:
         - name: c-1
-          image: httpd
+          image: httpd        ## if you want to use custom image then ; image : repository url : < image tag/name >  or , image : repository url @ digest 
+                              ## ex :-   image : 451947743144.dkr.ecr.us-east-1.amazonaws.com/my-image:latest    or      , image : 451947743144.dkr.ecr.us-east-1.amazonaws.com/my-image@sha256:b22f8a31d499f51d48ae488184837ad2c2525f6d9dafa99c6ef05cc09ba02b29
+                              ## image : url@digest    = this is safe way in this if image change  then no problem 
           ports:
             - containerPort: 80
 ---

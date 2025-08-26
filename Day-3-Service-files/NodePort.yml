@@ -9,6 +9,7 @@ spec:
       app: myapp                         # label should match with pod label 
   template:
     metadata:
+      # name : < pod name >  but here pod name is not allowed because deployment ymal is create pood with autoname 
       labels:
         app: myapp                      # label should match with deployment label 
         type: frontend

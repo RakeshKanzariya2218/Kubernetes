@@ -35,3 +35,6 @@ spec:
     - port: 80
       targetPort: 80
       protocol: TCP
+
+
+#### cluster ip service is for internal communicaton purpose used like pod to pod communication  for ex : frontend to backend and backend to db communication    ############

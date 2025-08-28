@@ -1,0 +1,20 @@
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: hpa-1               # name of the horizontall scalling 
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1          # version of deployment yml
+    kind: Deployment             # kind of deployment yml
+    name: d-1                    # name of the deployment yml metadata 
+  minReplicas: 1
+  maxReplicas: 10
+  metrics:                        # allow resources to pod and manage 
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 1       # if avgload will be above 1% than 2nd ( next ) pod will create
+  
+  #  horizontal scaller and deployment yml both communicate by metadata section 

@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: d-1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+        - name: c-1
+          image: nginx
+          ports:
+            - containerPort: 80
+          resources:
+           # You must specify requests for CPU to autoscale
+           # based on CPU utilization
+            requests:
+              cpu: "250m"

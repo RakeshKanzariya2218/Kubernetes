@@ -14,11 +14,11 @@ spec:
     metadata:
       labels:
         app: myapp
-        replica: green
+        replica: green          # labels shoud match with service.yml and based on labels send traffic blue to green and green to blue 
     spec:
       containers:
         - name: c-3
-          image: nginx
+          image: httpd
           ports: 
             - name: http
               containerPort: 80

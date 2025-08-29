@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata: 
+  name: d-3
+  labels:
+    type: green-blue
+spec:
+  replicas: 2
+  selector: 
+    matchLabels: 
+      app: myapp
+      replica: green 
+  template:
+    metadata:
+      labels:
+        app: myapp
+        replica: green
+    spec:
+      containers:
+        - name: c-3
+          image: nginx
+          ports: 
+            - name: http
+              containerPort: 80

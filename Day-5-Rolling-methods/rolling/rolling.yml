@@ -1,0 +1,30 @@
+# only one update in the recreate.yml file it is the add max unavailable and surge remaining all part as it recreate.yml
+
+apiVersion: apps/v1
+kind: Deployment 
+metadata:
+  name: d-2
+  labels:
+    type: rolling-method
+spec: 
+  replicas: 10            # 4 also fine but just praactice purpose take 10
+  selector: 
+    matchLabels: 
+      app : myapp
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%        # first 25% pod will delete means make as unavailable
+      maxSurge: 25%              # than 25% pod will surge means create like that
+  template: 
+    metadata: 
+      labels: 
+        app: myapp
+        type: pod-type
+    spec: 
+      containers:
+        - name: c-2
+          image: httpd
+          ports:
+            - name: http
+              containerPort: 80

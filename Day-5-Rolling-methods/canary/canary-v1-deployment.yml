@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: d-5
+  labels:
+    app: canary-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: canary-demo                     # all labels are same v-1, v-2 and service all labels are same 
+
+  template:
+    metadata:
+      labels:
+        app: canary-demo
+        type: version-1
+    spec:
+      containers:
+        - name: c-1
+          image: nginx #version-1
+          resources:
+            requests:
+              cpu: "10m" #1% of a core
+              memory: "150Mi"
+            limits:
+              cpu: "50m" #5% of a core
+              memory: "400Mi"
+          imagePullPolicy: Always
+      restartPolicy: Always
+
+      #  version 1 and version 2 slowly scale down version-1 and scale up version-2 like that.
+      
+      

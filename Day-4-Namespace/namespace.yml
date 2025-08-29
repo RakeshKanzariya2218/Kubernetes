@@ -1,0 +1,22 @@
+# creating namespace through yml file 
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: demo           # name of the namespace like default namespace 
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp
+  namespace: demo       #   demo namespace inside this pod will creare 
+  labels:
+      app: webapp
+      type: front-end
+spec:
+  containers:
+  - name: nginx-container
+    image: nginx
+
+
+# we can also create namespace througn cli and after calling this namespace inside pod.yml and creare that pod inside that namespace 

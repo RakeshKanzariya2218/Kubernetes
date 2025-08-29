@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: d-1
+  labels: 
+    type: recreate-type-method
+spec: 
+  replicas: 3
+  selector: 
+    matchLabels:
+      app: myapp 
+  strategy:                  # only one change in basic deployment.yml file inside that is add the strategy inside "spec: "
+    type: Recreate
+  template:
+    metadata: 
+      labels:
+        app: myapp 
+        type: pod
+    spec:
+      containers:
+        - name: c-1
+          image: nginx
+          ports:
+            - containerPort: 80

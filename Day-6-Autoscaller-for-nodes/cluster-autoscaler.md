@@ -10,7 +10,7 @@ Apply the official Cluster Autoscaler manifest for your Kubernetes version (adju
 
 ---------install autoscaller as a yml file --------
 
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/autoscaler/cluster-autoscaler-1.29.0/cluster-autoscaler/cloudprovider/aws/examples/cluster-autoscaler-autodiscover.yaml
+- kubectl apply -f https://raw.githubusercontent.com/kubernetes/autoscaler/cluster-autoscaler-1.29.0/cluster-autoscaler/cloudprovider/aws/examples/cluster-autoscaler-autodiscover.yaml
 
 
 
@@ -18,7 +18,7 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/autoscaler/cluster
 
 --- autoscaller run as a pod inside kube-system namespace which is run in kube-system namespace---
 
-kubectl -n kube-system get pods -l app=cluster-autoscaler
+- kubectl -n kube-system get pods -l app=cluster-autoscaler
 
 Expected output:
 
@@ -30,7 +30,7 @@ cluster-autoscaler-6889f6cf54-7pcsh   1/1     Running   0          2m
 Edit the deployment to configure your cluster name:
 -- edit deployment.yml(autoscaler yml fiel) to add that autoscaler into your cluster which was you created. ---
 
-kubectl -n kube-system edit deployment.apps/cluster-autoscaler
+- kubectl -n kube-system edit deployment.apps/cluster-autoscaler
 
 edit <CLUSTER NAME>
 
@@ -70,34 +70,34 @@ Attach this to your Node Group Role.
 5️⃣ Update Node Group Scaling Config
 Set your min/max/desired node counts for the autoscaler:
 
-aws eks update-nodegroup-config \
+- aws eks update-nodegroup-config \
   --cluster-name <cluster name> \
   --nodegroup-name <node group name> \
   --scaling-config minSize=2,maxSize=6,desiredSize=3
   or 
   ======while cluster creating time create cluster with the command :
 
-  eksctl create cluster --name rakesh --region us-east-1 --node-type t2.smll --nodes-min 2 --nodes-max 6 --nodes 3
+ - eksctl create cluster --name rakesh --region us-east-1 --node-type t2.smll --nodes-min 2 --nodes-max 6 --nodes 3
 
 6️⃣ Check Autoscaler Logs
 Watch the logs to confirm the autoscaler is working:
 
 
-kubectl -n kube-system logs -f deployment/cluster-autoscaler
+- kubectl -n kube-system logs -f deployment/cluster-autoscaler
 
 ✅ Validation
 Deploy a test workload with more pods than your current node capacity:
 
 
-kubectl create deployment nginx --image=nginx --replicas=50
+- kubectl create deployment nginx --image=nginx --replicas=50
 Check if new nodes are being added:
 
 
-kubectl get nodes -w
+- kubectl get nodes -w
 Scale down pods and watch nodes reduce (if below maxSize and above minSize):
 
 
-kubectl scale deployment nginx --replicas=1
+- kubectl scale deployment nginx --replicas=1
 📝 Notes
 minSize ensures at least 2 nodes are always running.
 

@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dep-1
+  labels:
+    app: myapp
+spec:
+  replicas: 6
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      terminationGracePeriodSeconds: 30
+      containers:
+      - name: container-1
+        #image: veeranarni/hotstar:latest
+        image: httpd
+        ports:
+          - name: http
+            containerPort: 80
+        imagePullPolicy: "Always"
+        

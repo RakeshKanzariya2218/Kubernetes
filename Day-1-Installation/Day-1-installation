@@ -33,6 +33,10 @@ For ex :
       --region us-east-1 \
    --node-type t2.small \
 
+or 
+
+  eksctl create cluster --name rakesh --region us-east-1 --node-type t2.medium --nodes-min 2 --nodes-max 6 --nodes 2
+
 ======= delete the cluster =======
 
 eksctl delete cluster naresh --region ap-south-1

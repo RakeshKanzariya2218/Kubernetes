@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata: 
+  name: d-1
+  labels: 
+    type: node-autoscaler
+spec:
+  replicas: 3
+  selector: 
+    matchLabels: 
+      app: myapp
+  template: 
+    metadata: 
+      labels: 
+        app: myapp
+        type: pod-type
+    spec: 
+      containers: 
+        - name: c-1
+          image: nginx
+          ports:
+            - name: http
+              containerPort: 80

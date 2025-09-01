@@ -49,6 +49,15 @@ or
 kubectl get pods -A     # it shows all namespace pods which are running (ALL)
 
 
+=================================================================================================
+
+if the eks-client is delete by any reasson than communicate existing nodes with new client by:
+
+aws eks update-kubeconfig --region us-east-1 --name rakesh
+
+-- update your cluster and get existing nodes
+
+
 
 
 

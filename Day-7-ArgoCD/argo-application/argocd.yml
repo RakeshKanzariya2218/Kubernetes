@@ -1,0 +1,26 @@
+# from this yml file we can create argocd application by yml file not mannualy # 
+
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: myapp-argo-application
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/CloudTechDevOps/Kubernetes.git        # change with your repo url
+    targetRevision: HEAD
+    path: day-14-argocd                                               # replace with the yml file path 
+  destination: 
+    server: https://kubernetes.default.svc
+    namespace: myapp
+
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true      # if namespace is not there than create new namespace in cluster 
+
+    automated:
+      selfHeal: true            # maintaine desired state and current state 
+      prune: true               # if yml delete from github then custer inside pods willl bt delete

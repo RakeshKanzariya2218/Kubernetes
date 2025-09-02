@@ -41,4 +41,32 @@
 - command for alert like query 
  - 100 - (avg by (instance) (rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100)
 
+- some queries for pagerduty
+  metrics
+http_server_requests_seconds_count
+node_cpu_seconds_total
+
+Number of pods running per namespace.
+sum(kube_pod_status_phase) by (namespace)
+count(kube_pod_status_phase{phase="Running"})
+sum(kube_pod_status_ready{namespace="monitoring", condition="true"})
+
+Pod CPU Usage (per pod)
+sum(rate(container_cpu_usage_seconds_total{image!="", pod!=""}[5m])) by (pod, namespace)
+
+Pod Memory Usage (per pod)
+sum(container_memory_usage_bytes{image!="", pod!=""}) by (pod, namespace)
+
+CPU Usage Across All Cores for nodes
+100 - (avg(rate(node_cpu_seconds_total{mode="idle"}[5m])) by (instance) * 100)
+
+Memory Usage Percentage for nodes
+(node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes * 100
+
+Disk Usage Percentage
+(node_filesystem_size_bytes{fstype!~"tmpfs|overlay"} - node_filesystem_free_bytes{fstype!~"tmpfs|overlay"}) / node_filesystem_size_bytes{fstype!~"tmpfs|overlay"} * 100
+
+Disk Space Availablility
+node_filesystem_free_bytes{fstype!~"tmpfs|overlay"Disk
+
 

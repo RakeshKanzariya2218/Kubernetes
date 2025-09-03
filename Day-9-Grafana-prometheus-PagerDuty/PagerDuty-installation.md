@@ -39,10 +39,10 @@
 ---------------------------------------
 - create new aler policy and then test the alert system 
 - sterss command run inside the any cluster nodes and test 
-  sudo yum install -y stress   # For Amazon Linux / RHEL
-  sudo apt-get install -y stress # For Ubuntu
+   - sudo yum install -y stress   # For Amazon Linux / RHEL
+   - sudo apt-get install -y stress # For Ubuntu
 
-  stress --cpu 2 --timeout 300s
+   - stress --cpu 2 --timeout 300s
 
 -----------------------------------------
 

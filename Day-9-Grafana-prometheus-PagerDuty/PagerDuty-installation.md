@@ -44,8 +44,7 @@
 
   stress --cpu 2 --timeout 300s
 
-
-  ----------------------------------------
+-----------------------------------------
 
   - pager duty login email is myyahoo email is working for free tier testing 
   - if you are getting notification through email then working properly . 

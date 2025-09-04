@@ -12,3 +12,8 @@
 - route53 - loadbalancer - ingress controller - service - pods.yml( pth wise applicatioon )
 
 - inside ingress controller communicate with svc.yml by service name  -->
+
+- inside ingress.yaml
+- annotations:
+  nginx.ingress.kubernetes.io/rewrite-target: /$2       = means 
+- "Take whatever matches the URL path, then rewrite it and send only the part in $2 to the backend service."

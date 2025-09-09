@@ -10,7 +10,7 @@
 
 - so give specific pod to specific aws service permission = service account 
 
-- process :
+# process :
 
 - Create  policy 
 - Enable OIDC 
@@ -18,7 +18,7 @@
 - Attach policy to service role
 - Use service account inside pod.yaml - under spec:
 
-- 1. Create a policy with specific permission whicever permission want to give a specific pod.
+1. Create a policy with specific permission whicever permission want to give a specific pod.
 
 vi pod-s3-policy.json   # save this file in ec2 server.
 ```
@@ -34,18 +34,18 @@ vi pod-s3-policy.json   # save this file in ec2 server.
 }
 ```
 
-- 2. create  policy 
+2. create  policy 
 ```
 aws iam create-policy \
   --policy-name eks-pod-s3-fullaccess \
   --policy-document file://pod-s3-policy.json
 ```
 
-- 3. Enable OIDC for connection to aws service.
+3. Enable OIDC for connection to aws service.
 
 - eksctl utils associate-iam-oidc-provider --region us-east-1 --cluster rakesh --approve
 
-- 4. create service account role and attach policy
+4. create service account role and attach policy
 
 ```
 eksctl create iamserviceaccount \
@@ -57,7 +57,7 @@ eksctl create iamserviceaccount \
   --approve
 ```
 
-- 5. save pod.yaml  with serviceaccount section
+5. save pod.yaml  with serviceaccount section
 ```
 apiVersion: v1
 kind: Pod
@@ -77,33 +77,33 @@ spec:
 
 - if you want to update the seervicerole account then run bellow command and edit the policy.
 
-- kubectl edit sa s3-access-sa -n default
+      - kubectl edit sa s3-access-sa -n default
 
 - if policy adit then edit directly.
-- create role attach required permissiion and edit role arn in serviceaccount role.
+       - create role attach required permissiion and edit role arn in serviceaccount role.
 
 ----------------------------------------------------------------
 
 1. List all ServiceAccounts in default namespace
 
--kubectl get sa
+  - kubectl get sa
 
 
 2. List ServiceAccounts in a specific namespace
 
--kubectl get sa -n kube-system
+   - kubectl get sa -n kube-system
 
 3. Describe a ServiceAccount (to see IAM role annotations for IRSA)
 
--kubectl describe sa s3-access-sa -n default
+   - kubectl describe sa s3-access-sa -n default
 
 4. Get YAML output for a ServiceAccount
 
--kubectl get sa s3-access-sa -n default -o yaml                # This is useful to confirm the OpenID Connect annotation is there.
+    - kubectl get sa s3-access-sa -n default -o yaml                # This is useful to confirm the OpenID Connect annotation is there.
 
 5.If you want to update the ServiceAccount annotation
 
--kubectl edit sa s3-access-sa -n default
+     - kubectl edit sa s3-access-sa -n default
 
 ------------------------------------------------------------------
 

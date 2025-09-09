@@ -48,9 +48,9 @@
 
 - step-5 add usr arn into config map fil
 
-- # Role
+- Role
 ==============================================================
-
+```
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
@@ -66,10 +66,11 @@ rules:
   - apiGroups: ["apps"]
     resources: ["deployments"]
     verbs: ["get", "list"]
+```
 
-
-# Role Binding to map role and group
+- Role Binding to map role and group
 ==========================================
+```
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
@@ -83,7 +84,7 @@ roleRef:
   kind: Role
   name: developer-role
   apiGroup: rbac.authorization.k8s.io
-
+```
 
 #edit command and add belwow user details
 
@@ -91,19 +92,22 @@ roleRef:
 
 #aws auth config
 ===============================================
+```
 mapUsers: |
    - userarn: arn:aws:iam::483216680875:user/devops
      username: devops
      groups:
      - developer
-
-
+```
+```
 kubectl get rb 
 kubectl get rolebinding
 kubectl api-resources
+```
 
 ----for example below reference ------
 
+```
 apiVersion: v1
 data:
   mapRoles: |
@@ -124,6 +128,7 @@ metadata:
   namespace: kube-system
   resourceVersion: "344678"
   uid: 8167447c-eb81-4108-8653-690369d98c4f
+```
 
 
 - aws eks update-kubeconfig --name test --profile devops  #user 

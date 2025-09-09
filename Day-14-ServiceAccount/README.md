@@ -80,7 +80,7 @@ spec:
       - kubectl edit sa s3-access-sa -n default
 
 - if policy adit then edit directly.
-       - create role attach required permissiion and edit role arn in serviceaccount role.
+- create role attach required permissiion and edit role arn in serviceaccount role.
 
 ----------------------------------------------------------------
 

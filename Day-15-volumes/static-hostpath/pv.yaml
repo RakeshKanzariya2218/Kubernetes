@@ -7,7 +7,7 @@ metadata:
 spec:
   storageClassName: manual
   capacity:
-    storage: 5Gi
+    storage: 5Gi                 # this pv is usign node ebs volume if node delete then volume also delete and pod recreate in diffrent node then vlomes data are completly unsync .
   accessModes:
     - ReadWriteOnce
   hostPath:

@@ -30,6 +30,7 @@ spec:
           volumeMounts:
             - name: mysql-data
               mountPath: /var/lib/mysql
+
   volumeClaimTemplates:
     - metadata:
         name: mysql-data
@@ -42,7 +43,11 @@ spec:
 
 
 
-          #   env:
+          
+
+          
+
+          #     env:
           #   - name: MYSQL_ROOT_PASSWORD
           #     valueFrom:
           #       secretKeyRef:
@@ -50,7 +55,7 @@ spec:
           #         key: mysql-root-password
           #   - name: MYSQL_USER
           #     valueFrom:
-          #       secretKeyRef:
+          #       configMapKeyRef:   # fixed
           #         name: mysql-config
           #         key: MYSQL_USER
           #   - name: MYSQL_PASSWORD
@@ -60,7 +65,7 @@ spec:
           #         key: mysql-user-password
           #   - name: MYSQL_DATABASE
           #     valueFrom:
-          #       secretKeyRef:
+          #       configMapKeyRef:   # fixed
           #         name: mysql-config
           #         key: MYSQL_DATABASE
           # volumeMounts:

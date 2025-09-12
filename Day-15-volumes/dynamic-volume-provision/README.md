@@ -35,3 +35,17 @@
 - secrets are using when store username and password 
 
 - configmap and secrets  are like a terraform variables.tf 
+
+
+
+
+- Run these in sequence:
+
+- kubectl apply -f config.yaml
+- kubectl apply -f secrets.yaml
+- kubectl apply -f storageclass.yaml
+- kubectl apply -f statefulset.yaml
+
+- for any pvc stuck in the terminetting state forcefully delete it run this command :
+
+- kubectl delete pvc mysql-data-mysql-0 --grace-period=0 --force

@@ -15,7 +15,7 @@ Developer --> githuub --> ArgoCD --> connect cluster and deploy the yml file
 -----------------------------------------------------------------------------------------------------
 ==> First create "argocd" namespace in eks-client because argocd install in "argocd" namespace
 
------1. install argocd in cluster nodes:
+-----1. install argocd in cluster main:
 
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 
